@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Payment = () => {
+const Payment: React.FC = () => {
   const classes = useStyles();
 
   const invoices = [

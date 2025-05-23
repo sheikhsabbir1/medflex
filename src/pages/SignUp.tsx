@@ -19,16 +19,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SignUp = () => {
+const SignUp: React.FC = () => {
   const classes = useStyles();
   const [formData, setFormData] = useState({
     clinicName: '',
     email: '',
     password: '',
-    license: null,
+    license: null as File | null,
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -36,14 +36,16 @@ const SignUp = () => {
     });
   };
 
-  const handleFileChange = (e) => {
-    setFormData({
-      ...formData,
-      license: e.target.files[0],
-    });
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setFormData({
+        ...formData,
+        license: e.target.files[0],
+      });
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log(formData);
   };
